@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "studentforum-f11ce",
+  "private_key_id": "55182b09f681746b830a7e9cd7719b7e1fa6f1b0",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQD75xFcXc3WgDON\nd2wbevacgYxJCswzf2ZzRivQftUaJyU4KK0t8sulKsnYiaHFJNdl5pDwbC/e/uEp\nUDDG+aFA9vuKDahJtVW++lg4/lo64rYBZFf1DRT7uxv7L3HBQGc2eukKrNHU6nkD\n230ucDyghGLW6CEsHyWF438hDS0cStb/kOJPtgNm3Zb2Jq7gePkoC1Vs/4+QbB7s\n2/ZXkE7Xo8C1+qbkhMwYK3WYXVXc/6RL7c8C+123eKbDaEDRI0NSPRbK7qvaUuwu\n2PcllF2zyMc1Vwenn+M7fX/dKJnCpMjeLQ/7uLaxM0upELqEjjjZej4shpT2JFjJ\n/QBR0DThAgMBAAECggEAX533oIx4wBWcu/ObRRkZOBISmn0vQtL2pAX8RqGGKW23\neogyKFFTjKffw0KG9crEukjZNnGSgD5WYHSwdy61T3AQzffeK9BZsmrbhxLBVD3P\nIVsh6gIjt2PwPJnnP5g/NVZVVDiCU6QG+HhdnX17/eASlom5YcKW3yoaDQUv3N8o\nz+OJPOcAKGfrtjGs8bijDn7tjWcL8NKM2l9SIXE0xSaH26NI1/WtLulbwVjaoB3U\ncmyPGRfOuMuapDDYLw95gO7OPfyRtp1bOL4eSrU3S6WZhwD8h7mcUgCZB/uKc5gI\new20yXa4uJOvQHlCDpGMHZ2NHgNjh5pH3Dy5Vp+5+wKBgQD/gLnU7kmWqfZzgQuV\n3zA6RY2siSg2/zhylhNMYuLsHwDpNad3srP6Ia56+dqU4VY2jyZ7s9OYoQW4GpjJ\nJEF6G1hMr94m3UQl6YcdlUzMO+MJ7NeM7QCO9t6iVyQCt8iuSh9AadPSH7DNVRs2\n67ZNK0L7qHvgWWSi7uLV7khWewKBgQD8ZIxr/B+L46RVlowNujG44O/l1tfE/if7\nIwDzGF4aU6DhnYyoq5ZDiroumJj4146QU9PUHOapYjoxw085b/QVGuuHNlejLL6m\n12+RxsjvLup3WxvafPqT2p2RfnVkySXWPwy6Dh6vLSzQUD0iACL653ZJ71A9gZkz\n02iwZHoRUwKBgQC9pcnJ4DllCLEy2NVFoE2G4zuelovwDo7SlsyqRTgUdYrSj43H\njjCC+F8vTqfNHFlG1AiHh1oHD3ZUSgGgQzYKsaNgAKZPiKtdzLIK5lgDvGvwYQk5\nxG1GsL1eGHpVPh9KJyB9Sk/8xqMQNhymLl25d+QXMd8JDrFhMxnSGzU8YwKBgE/Y\ni2f6GgzKVonRF7ucBPDlEF/Y6OfkM8fKWhmNwu93N3VIv1/48I+rip0FH5fRscNN\nEb2P6xT5A0oM7LpSBZjLrGlZMr5ngGUN0LkAdz7by8c4poYndapixehqZj8dN4Ag\n8CjIIMLwerXoPH7OJkLUCOL495yNrGbt4be0Ab4LAoGACsP4fTpMG0Le+Nj6jl9f\nK5KI1vlxZ/FKRA7TC4asBULX5EVaU6RP2Z7JyjzacQuDoQStj1ayj6XK+c0gohy1\nYDtMJ0vLZj3nG9k4Fexd2rvQt8OxsOXnHI9Z/42BBWn7RWdPCwGFQGMQlm8nc5Po\nuap5PtZR6BdK4iGxLkpCfZo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-jansh@studentforum-f11ce.iam.gserviceaccount.com",
+  "client_id": "109959659673878400806",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-jansh%40studentforum-f11ce.iam.gserviceaccount.com"
+}

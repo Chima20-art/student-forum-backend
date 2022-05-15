@@ -22,6 +22,11 @@ const createComment = async (comment) => {
     .set(JSON.parse(JSON.stringify(comment)));
 };
 
+const removeComment = async (id) => {
+  return await db.collection("comments").doc(id).delete();
+};
+
 module.exports = {
   createComment,
+  removeComment,
 };

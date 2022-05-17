@@ -15,11 +15,15 @@ admin.initializeApp({
 
 const db = getFirestore();
 
-const createComment = async (comment) => {
+const addCommentInDb = async (comment) => {
   return await db
     .collection("comments")
     .doc(comment.id)
     .set(JSON.parse(JSON.stringify(comment)));
+};
+
+const getCommentById = async (id) => {
+  return await db.collection("comments").doc(id).get();
 };
 
 const removeComment = async (id) => {
@@ -27,6 +31,7 @@ const removeComment = async (id) => {
 };
 
 module.exports = {
-  createComment,
+  addCommentInDb,
   removeComment,
+  getCommentById,
 };

@@ -10,3 +10,4 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 
 exports.createComment = require("./fn/createComment").createComment;
 exports.removeComment = require("./fn/removeComment").removeContent;
+exports.addCommentLike = require("./fn/addCommentLike").addCommentLike;

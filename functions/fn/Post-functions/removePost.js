@@ -1,0 +1,17 @@
+const functions = require("firebase-functions");
+const db = require("../../services/db");
+
+exports.removePost = functions.https.onRequest(async (request, response) => {
+  if (request.method == "DELETE") {
+    const { id } = request.body;
+    try {
+      const res = await db.removePost(id);
+      return response.status(200).send(res);
+    } catch (error) {
+      functions.logger.error("Post id is not defined", error);
+      return response.status(500).send(error);
+    }
+  } else {
+    return response.status(501).send("Request method not supported");
+  }
+});

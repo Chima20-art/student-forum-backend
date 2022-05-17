@@ -1,5 +1,5 @@
 const functions = require("firebase-functions");
-const db = require("../services/db");
+const db = require("../../services/db");
 
 exports.addCommentLike = functions.https.onRequest(
   async (request, response) => {

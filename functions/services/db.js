@@ -15,7 +15,20 @@ admin.initializeApp({
 
 const db = getFirestore();
 
-const addCommentInDb = async (comment) => {
+const addPostToDb = async (post) => {
+  return await db
+    .collection("posts")
+    .doc(post.id)
+    .set(JSON.parse(JSON.stringify(post)));
+};
+const removePost = async (id) => {
+  return await db.collection("posts").doc(id).delete();
+};
+const getPostById = async (id) => {
+  return await db.collection("posts").doc(id).get();
+};
+
+const addCommentToDb = async (comment) => {
   return await db
     .collection("comments")
     .doc(comment.id)
@@ -31,7 +44,10 @@ const removeComment = async (id) => {
 };
 
 module.exports = {
-  addCommentInDb,
+  getPostById,
+  removePost,
   removeComment,
   getCommentById,
+  addCommentToDb,
+  addPostToDb,
 };

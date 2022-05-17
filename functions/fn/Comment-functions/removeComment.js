@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
-const db = require("../services/db");
+const db = require("../../services/db");
 
-exports.removeContent = functions.https.onRequest(async (request, response) => {
+exports.removeComment = functions.https.onRequest(async (request, response) => {
   if (request.method == "DELETE") {
     const { id } = request.body;
     if (id) {

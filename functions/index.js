@@ -8,6 +8,15 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
   response.send("Hello from Firebase!");
 });
 
-exports.createComment = require("./fn/createComment").createComment;
-exports.removeComment = require("./fn/removeComment").removeContent;
-exports.addCommentLike = require("./fn/addCommentLike").addCommentLike;
+exports.createComment =
+  require("./fn/Comment-functions/createComment").createComment;
+exports.removeComment =
+  require("./fn/Comment-functions/removeComment").removeComment;
+exports.addCommentLike =
+  require("./fn/Comment-functions/addCommentLike").addCommentLike;
+
+exports.createPost = require("./fn/Post-functions/createPost").createPost;
+
+exports.removePost = require("./fn/Post-functions/removePost").removePost;
+
+exports.addPostLike = require("./fn/Post-functions/addPostLike").addPostLike;

@@ -1,6 +1,6 @@
 const functions = require("firebase-functions");
-const db = require("../services/db");
-const { Comment } = require("../model/comment");
+const db = require("../../services/db");
+const { Comment } = require("../../model/comment");
 exports.createComment = functions.https.onRequest(async (request, response) => {
   if (request.method == "POST") {
     const { postedBy, content } = request.body;

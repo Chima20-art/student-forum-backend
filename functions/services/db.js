@@ -55,7 +55,22 @@ const removeCategory = async (id) => {
   return await db.collection("categories").doc(id).delete();
 };
 
+const getCategory = async (id) => {
+  return await db.collection("categories").doc(id).get();
+};
+const getAllCategories = async () => {
+  const res = await db.collection("categories").get();
+
+  const categories = [];
+  res.forEach((doc) => {
+    categories.push(doc.data());
+  });
+  return categories;
+};
+
 module.exports = {
+  getAllCategories,
+  getCategory,
   removeCategory,
   addCategoryToDb,
   getPostById,

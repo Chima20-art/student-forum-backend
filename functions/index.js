@@ -22,3 +22,7 @@ exports.removePost = require("./fn/Post-functions/removePost").removePost;
 exports.addPostLike = require("./fn/Post-functions/addPostLike").addPostLike;
 exports.createCategory = require("./fn/Category/createCategory").createCategory;
 exports.removeCategory = require("./fn/Category/removeCategory").removeCategory;
+exports.getCategory = require("./fn/Category/getCategory").getCategory;
+// eslint-disable-next-line max-len
+exports.getAllCategories =
+  require("./fn/Category/getAllCategories").getAllCategories;

@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
-const { category } = require("../model/category");
-const db = require("../services/db");
-const Category = require("../model/category").category;
+const { category } = require("../../model/category");
+const db = require("../../services/db");
+const Category = require("../../model/category").category;
 
 exports.createCategory = functions.https.onRequest(
   async (request, response) => {

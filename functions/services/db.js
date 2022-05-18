@@ -6,6 +6,7 @@ const {
 } = require("firebase-admin/firestore");
 
 const serviceAccount = require("../firebase-account-key.json");
+const { Category } = require("../model/category");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -43,7 +44,20 @@ const removeComment = async (id) => {
   return await db.collection("comments").doc(id).delete();
 };
 
+const addCategoryToDb = async (category) => {
+  return await db
+    .collection("categories")
+    .doc(category.id)
+    .set(JSON.parse(JSON.stringify(category)));
+};
+
+const removeCategory = async (id) => {
+  return await db.collection("categories").doc(id).delete();
+};
+
 module.exports = {
+  removeCategory,
+  addCategoryToDb,
   getPostById,
   removePost,
   removeComment,

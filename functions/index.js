@@ -20,3 +20,5 @@ exports.createPost = require("./fn/Post-functions/createPost").createPost;
 exports.removePost = require("./fn/Post-functions/removePost").removePost;
 
 exports.addPostLike = require("./fn/Post-functions/addPostLike").addPostLike;
+exports.createCategory = require("./fn/createCategory").createCategory;
+exports.removeCategory = require("./fn/removeCategory").removeCategory;

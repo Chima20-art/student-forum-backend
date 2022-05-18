@@ -15,6 +15,8 @@ exports.addPostLike = functions.https.onRequest(async (request, response) => {
           post.likes.unshift(userId);
           const res = db.addPostToDb(post);
           return response.status(200).send(res);
+        } else {
+          return response.status(500).send("Can't find post to like");
         }
       } catch (error) {
         functions.logger.error("error adding a  postLike ", error);

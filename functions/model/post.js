@@ -9,6 +9,7 @@ class Post {
     this.likes = [];
     this.id = uid(32);
     this.createdAt = Date.now();
+    this.comments = [];
   }
 }
 exports.Post = Post;

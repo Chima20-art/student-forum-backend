@@ -26,3 +26,9 @@ exports.getCategory = require("./fn/Category/getCategory").getCategory;
 // eslint-disable-next-line max-len
 exports.getAllCategories =
   require("./fn/Category/getAllCategories").getAllCategories;
+
+exports.getPost = require("./fn/Post-functions/getPost").getPost;
+
+// eslint-disable-next-line max-len
+exports.addPostComment =
+  require("./fn/Post-functions/addPostComment").addPostComment;

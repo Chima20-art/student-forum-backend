@@ -10,7 +10,7 @@ exports.addPostComment = functions.https.onRequest(
           const postDoc = await db.getPostById(postId);
           if (postDoc.exists) {
             let post = postDoc.data();
-            if (post.comments.includes(commentId)) {
+            if (!post.comments.includes(commentId)) {
               post.comments.unshift(commentId);
               const res = await db.addPostToDb(post);
               return response.status(200).send(post);

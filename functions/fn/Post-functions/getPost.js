@@ -11,6 +11,9 @@ exports.getPost = functions.https.onRequest(async (request, response) => {
         if (postDoc.exists) {
           let post = postDoc.data();
           const comments = [];
+          const categoryId = post.category;
+          let category = await db.getCategory(categoryId);
+          const categoryData = category.data();
           for (let i = 0; i < post.comments.length; i++) {
             let commentDoc = await db.getCommentById(post.comments[i]);
             if (commentDoc.exists) {
@@ -19,6 +22,7 @@ exports.getPost = functions.https.onRequest(async (request, response) => {
             }
           }
           post.comments = comments;
+          post.category = categoryData;
 
           return response.status(200).send(post);
         } else {

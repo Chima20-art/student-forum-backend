@@ -10,16 +10,16 @@ exports.getPost = functions.https.onRequest(async (request, response) => {
 
         if (postDoc.exists) {
           let post = postDoc.data();
-          post.comments = post.comments.map(async (commentId) => {
-            let commentDoc = await db.getCommentById(commentId);
+          const comments = [];
+          for (let i = 0; i < post.comments.length; i++) {
+            let commentDoc = await db.getCommentById(post.comments[i]);
             if (commentDoc.exists) {
               const comment = commentDoc.data();
-
-              return comment;
-            } else {
-              return null;
+              comments.push(comment);
             }
-          });
+          }
+          post.comments = comments;
+
           return response.status(200).send(post);
         } else {
           return response.status(500).send("Post does not exist.");

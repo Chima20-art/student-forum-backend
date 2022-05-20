@@ -8,7 +8,7 @@ exports.createComment = functions.https.onRequest(async (request, response) => {
     if (postedBy && content) {
       try {
         const comment = new Comment(postedBy, content);
-        const res = await db.addCommentInDb(comment);
+        const res = await db.addCommentToDb(comment);
         response.status(200).send(comment);
       } catch (error) {
         response.status(500).send(error);

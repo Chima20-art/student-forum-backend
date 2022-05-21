@@ -14,13 +14,17 @@ exports.getPost = functions.https.onRequest(async (request, response) => {
           const categoryId = post.category;
           let category = await db.getCategory(categoryId);
           const categoryData = category.data();
+          const commentsPromises = [];
           for (let i = 0; i < post.comments.length; i++) {
-            let commentDoc = await db.getCommentById(post.comments[i]);
-            if (commentDoc.exists) {
-              const comment = commentDoc.data();
-              comments.push(comment);
-            }
+            commentsPromises.push(db.getCommentById(post.comments[i]));
           }
+          let commentsRes = await Promise.all(commentsPromises);
+          commentsRes.forEach((comment) => {
+            if (comment.exists) {
+              comments.push(comment.data());
+            }
+            return null;
+          });
           post.comments = comments;
           post.category = categoryData;
 

@@ -68,7 +68,12 @@ const getAllCategories = async () => {
   return categories;
 };
 
+const getPostsCollection = async (a) => {
+  return await db.collection(a).get();
+};
+
 module.exports = {
+  getPostsCollection,
   getAllCategories,
   getCategory,
   removeCategory,

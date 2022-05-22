@@ -72,7 +72,31 @@ const getPostsCollection = async (a) => {
   return await db.collection(a).get();
 };
 
+const getPostsByCategory = async (a) => {
+  const collectionRef = await db.collection("posts");
+  const postsDocs = await collectionRef.where("category", "==", a).get();
+
+  const posts = [];
+  postsDocs.forEach((doc) => {
+    posts.push(doc.data());
+  });
+  return posts;
+};
+
+const getCommentByIds = async (ids) => {
+  const commentsDoc = await db
+    .collection("comments")
+    .where("id", "in", ids)
+    .get();
+  const comments = [];
+  commentsDoc.forEach((doc) => {
+    comments.push(doc.data());
+  });
+  return comments;
+};
+
 module.exports = {
+  getPostsByCategory,
   getPostsCollection,
   getAllCategories,
   getCategory,
@@ -84,4 +108,5 @@ module.exports = {
   getCommentById,
   addCommentToDb,
   addPostToDb,
+  getCommentByIds,
 };

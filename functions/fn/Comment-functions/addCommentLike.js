@@ -17,7 +17,7 @@ exports.addCommentLike = functions.https.onRequest(
                 .send("can't like a comment two times");
             }
             comment.likes.unshift(userId);
-            const res = db.createComment(comment);
+            const res = db.addCommentToDb(comment);
             return response.status(200).send(res);
           } else {
             return response.status(500).send("Comment doesn't exist");

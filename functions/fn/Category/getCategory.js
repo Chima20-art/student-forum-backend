@@ -7,7 +7,8 @@ exports.getCategory = functions.https.onRequest(async (request, response) => {
     if (id) {
       try {
         const res = await db.getCategory(id);
-        return response.status(200).send(res);
+        if (res.exists) return response.status(200).send(res.data());
+        return response.status(500).send("category does not exist");
       } catch (error) {
         functions.logger.error("Can't get a category by id", error);
         return response.status(500).send(error);

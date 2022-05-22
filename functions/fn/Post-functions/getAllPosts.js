@@ -1,12 +1,13 @@
 const functions = require("firebase-functions");
 const db = require("../../services/db");
 
+//todo : remove collection and switch it to get all posts with replaceing comments, and category id with thier objects
 exports.getAllPosts = functions.https.onRequest(async (request, response) => {
   if (request.method == "GET") {
     const { collection } = request.body;
     if (collection) {
       try {
-        let snapshot = await db.getPostsCollection(collection);
+        let snapshot = await db.getPostsCollection("posts");
         if (snapshot.size > 0) {
           const items = [];
           snapshot.forEach((item) => {

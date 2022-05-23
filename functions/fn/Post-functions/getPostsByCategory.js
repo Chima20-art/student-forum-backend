@@ -7,7 +7,6 @@ exports.getPostsByCategory = functions.https.onRequest(
       const { category } = request.body;
       if (category) {
         try {
-          //todo : get Cateogry by id and replace it in each post
           let postsRaw = await db.getPostsByCategory(category);
 
           if (postsRaw.length > 0) {

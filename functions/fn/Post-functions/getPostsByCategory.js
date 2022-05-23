@@ -15,6 +15,12 @@ exports.getPostsByCategory = functions.https.onRequest(
 
             for (var i = 0; i < postsRaw.length; i++) {
               const post = postsRaw[i];
+
+              const categoryId = post.category;
+              const categoryDoc = await db.getCategory(categoryId);
+              const categoryData = categoryDoc.data();
+              post.category = categoryData;
+
               const commentIds = post.comments;
               const comments =
                 commentIds.length > 0

@@ -68,8 +68,13 @@ const getAllCategories = async () => {
   return categories;
 };
 
-const getPostsCollection = async (a) => {
-  return await db.collection(a).get();
+const getPostsCollection = async () => {
+  const postsDoc = await db.collection("posts").get();
+  const posts = [];
+  postsDoc.forEach((post) => {
+    posts.push(post.data());
+  });
+  return posts;
 };
 
 const getPostsByCategory = async (a) => {

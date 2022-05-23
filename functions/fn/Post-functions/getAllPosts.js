@@ -10,10 +10,17 @@ exports.getAllPosts = functions.https.onRequest(async (request, response) => {
         let posts = [];
         for (var i = 0; i < postsRaw.length; i++) {
           const post = postsRaw[i];
+
+          const category = post.category;
+          const categoryDoc = await db.getCategory(category);
+          const categoryData = categoryDoc.data();
+          post.category = categoryData;
+
           const commentIds = post.comments;
           const comments =
             commentIds.length > 0 ? await db.getCommentByIds(commentIds) : [];
           post.comments = comments;
+
           posts.push(post);
         }
         return response.status(200).send(posts);

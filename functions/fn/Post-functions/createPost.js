@@ -1,9 +1,14 @@
+
+const cors= require('cors');
 const functions = require("firebase-functions");
 const db = require("../../services/db");
 const { Post } = require("../../model/post");
-const cors = require('cors')({origin: true});
 
-exports.createPost = functions.https.onRequest(async (request, response) => cors(req,res,() =>{
+const corsHandler = cors({origin: true});
+
+
+exports.createPost = functions.https.onRequest(async (request, response) => {
+  corsHandler(request,response, () => {});
   if (request.method == "POST") {
     const { postedBy, content, category } = request.body;
     if (postedBy && content && category) {

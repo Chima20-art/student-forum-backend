@@ -3,7 +3,7 @@
     "lint": "eslint.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "uid": "^2.0.0"
   }
-  
 }

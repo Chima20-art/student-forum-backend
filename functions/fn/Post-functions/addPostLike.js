@@ -2,6 +2,8 @@ const functions = require("firebase-functions");
 const db = require("../../services/db");
 
 exports.addPostLike = functions.https.onRequest(async (request, response) => {
+  response.set('Access-Control-Allow-Origin', '*');
+
   if (request.method == "POST") {
     const { userId, postId } = request.body;
     if (userId && postId) {

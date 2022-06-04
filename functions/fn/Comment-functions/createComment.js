@@ -2,6 +2,8 @@ const functions = require("firebase-functions");
 const db = require("../../services/db");
 const { Comment } = require("../../model/comment");
 exports.createComment = functions.https.onRequest(async (request, response) => {
+  response.set('Access-Control-Allow-Origin', '*');
+
   if (request.method == "POST") {
     const { postedBy, content } = request.body;
 

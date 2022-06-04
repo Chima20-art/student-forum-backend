@@ -3,6 +3,8 @@ const db = require("../../services/db");
 
 exports.getAllCategories = functions.https.onRequest(
   async (request, response) => {
+    response.set('Access-Control-Allow-Origin', '*');
+
     if (request.method == "GET") {
       try {
         const categories = await db.getAllCategories();

@@ -3,6 +3,8 @@ const db = require("../../services/db");
 
 exports.getPostsByCategory = functions.https.onRequest(
   async (request, response) => {
+    response.set('Access-Control-Allow-Origin', '*');
+
     if (request.method == "GET") {
       const { category } = request.body;
       if (category) {

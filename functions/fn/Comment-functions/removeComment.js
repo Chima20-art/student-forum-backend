@@ -2,6 +2,8 @@ const functions = require("firebase-functions");
 const db = require("../../services/db");
 
 exports.removeComment = functions.https.onRequest(async (request, response) => {
+  response.set('Access-Control-Allow-Origin', '*');
+
   if (request.method == "DELETE") {
     const { id } = request.body;
     if (id) {

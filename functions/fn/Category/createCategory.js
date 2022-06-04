@@ -5,6 +5,8 @@ const Category = require("../../model/category").category;
 
 exports.createCategory = functions.https.onRequest(
   async (request, response) => {
+    response.set('Access-Control-Allow-Origin', '*');
+
     if (request.method == "POST") {
       const { name, description } = request.body;
       if (name && description) {

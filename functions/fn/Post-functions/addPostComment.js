@@ -3,6 +3,8 @@ const db = require("../../services/db");
 
 exports.addPostComment = functions.https.onRequest(
   async (request, response) => {
+    response.set('Access-Control-Allow-Origin', '*');
+
     if (request.method == "POST") {
       const { commentId, postId } = request.body;
       if (commentId && postId) {

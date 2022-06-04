@@ -6,7 +6,7 @@ exports.addPostComment = functions.https.onRequest(
     response.set('Access-Control-Allow-Origin', '*');
 
     if (request.method == "POST") {
-      const { commentId, postId } = request.body;
+      const { commentId, postId } = JSON.parse(request.body);
       if (commentId && postId) {
         try {
           const postDoc = await db.getPostById(postId);

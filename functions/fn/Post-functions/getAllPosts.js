@@ -1,13 +1,19 @@
 const functions = require("firebase-functions");
 const db = require("../../services/db");
 
+
+const NUMBER_OF_POSTS_PER_PAGE = 25;
+
 exports.getAllPosts = functions.https.onRequest(async (request, response) => {
   response.set('Access-Control-Allow-Origin', '*');
 
   if (request.method == "GET") {
+    const {cursor } = JSON.parse(request.body);
+    if(!cursor) cursor = 0;
     try {
       let postsRaw = await db.getPostsCollection();
       if (postsRaw.length > 0) {
+        postsRaw = postsRaw.slice(cursor*NUMBER_OF_POSTS_PER_PAGE ,cursor*NUMBER_OF_POSTS_PER_PAGE + NUMBER_OF_POSTS_PER_PAGE)
         let posts = [];
         for (var i = 0; i < postsRaw.length; i++) {
           const post = postsRaw[i];
@@ -30,7 +36,7 @@ exports.getAllPosts = functions.https.onRequest(async (request, response) => {
       }
     } catch (error) {
       functions.logger.error("Can't get posts collection", error);
-      return response.status(500).send(error);
+      return response.status(503).send(error);
     }
   } else {
     return response.status(501).send("Request method is not defined");

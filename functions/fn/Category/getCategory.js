@@ -5,7 +5,7 @@ exports.getCategory = functions.https.onRequest(async (request, response) => {
   response.set('Access-Control-Allow-Origin', '*');
 
   if (request.method == "GET") {
-    const { id } = request.body;
+    const { id } = JSON.parse(request.body);
     if (id) {
       try {
         const res = await db.getCategory(id);

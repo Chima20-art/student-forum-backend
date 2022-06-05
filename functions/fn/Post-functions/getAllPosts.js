@@ -36,7 +36,7 @@ exports.getAllPosts = functions.https.onRequest(async (request, response) => {
       }
     } catch (error) {
       functions.logger.error("Can't get posts collection", error);
-      return response.status(503).send(error);
+      return response.status(502).send(error);
     }
   } else {
     return response.status(501).send("Request method is not defined");

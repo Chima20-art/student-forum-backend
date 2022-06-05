@@ -5,7 +5,7 @@ exports.removePost = functions.https.onRequest(async (request, response) => {
   response.set('Access-Control-Allow-Origin', '*');
 
   if (request.method == "DELETE") {
-    const { id } = request.body;
+    const { id } = JSON.parse(request.body);
     try {
       const res = await db.removePost(id);
       return response.status(200).send(res);

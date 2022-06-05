@@ -6,7 +6,7 @@ exports.getPostsByCategory = functions.https.onRequest(
     response.set('Access-Control-Allow-Origin', '*');
 
     if (request.method == "GET") {
-      const { category } = request.body;
+      const { category } = JSON.parse(request.body);
       if (category) {
         try {
           let postsRaw = await db.getPostsByCategory(category);

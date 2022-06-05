@@ -5,7 +5,7 @@ exports.addPostLike = functions.https.onRequest(async (request, response) => {
   response.set('Access-Control-Allow-Origin', '*');
 
   if (request.method == "POST") {
-    const { userId, postId } = request.body;
+    const { userId, postId } = JSON.parse(request.body);
     if (userId && postId) {
       try {
         const postDoc = await db.getPostById(postId);

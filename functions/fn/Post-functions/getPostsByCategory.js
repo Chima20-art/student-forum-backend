@@ -1,17 +1,21 @@
 const functions = require("firebase-functions");
 const db = require("../../services/db");
 
+const NUMBER_OF_POSTS = 25;
+
 exports.getPostsByCategory = functions.https.onRequest(
   async (request, response) => {
     response.set('Access-Control-Allow-Origin', '*');
 
-    if (request.method == "GET") {
-      const { category } = JSON.parse(request.body);
+    if (request.method == "POST") {
+      const { category,cursor } = JSON.parse(request.body);
+      if(!cursor) cursor = 0;
       if (category) {
         try {
           let postsRaw = await db.getPostsByCategory(category);
 
           if (postsRaw.length > 0) {
+            postsRaw = postsRaw.split(cursor * NUMBER_OF_POSTS ,  (cursor * NUMBER_OF_POSTS) + NUMBER_OF_POSTS)
             let posts = [];
 
             const categoryDoc = await db.getCategory(category);

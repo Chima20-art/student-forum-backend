@@ -4,9 +4,9 @@ const db = require("../../services/db");
 exports.getPost = functions.https.onRequest(async (request, response) => {
   response.set('Access-Control-Allow-Origin', '*');
 
-  if (request.method == "GET") {
+  if (request.method == "POST") {
     try {
-      const { id } = request.body;
+      const { id } = JSON.parse(request.body);
       if (id) {
         const postDoc = await db.getPostById(id);
 

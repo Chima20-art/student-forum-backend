@@ -6,7 +6,7 @@ exports.removeCategory = functions.https.onRequest(
     response.set('Access-Control-Allow-Origin', '*');
 
     if (request.method == "DELETE") {
-      const { id } = JSON.parse(request.body);
+      const { id } = request.body
       if (id) {
         try {
           const res = await db.removeCategory(id);

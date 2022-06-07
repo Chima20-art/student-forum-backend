@@ -16,6 +16,8 @@ admin.initializeApp({
 
 const db = getFirestore();
 
+
+
 const addPostToDb = async (post) => {
   return await db
     .collection("posts")
@@ -69,7 +71,7 @@ const getAllCategories = async () => {
 };
 
 const getPostsCollection = async () => {
-  const postsDoc = await db.collection("posts").get();
+  const postsDoc = await db.collection("posts").orderBy('createdAt',"desc").limit(151).get();
   const posts = [];
   postsDoc.forEach((post) => {
     posts.push(post.data());
@@ -78,8 +80,9 @@ const getPostsCollection = async () => {
 };
 
 const getPostsByCategory = async (a) => {
+
   const collectionRef = await db.collection("posts");
-  const postsDocs = await collectionRef.where("category", "==", a).get();
+  const postsDocs = await collectionRef.where("category", "==", a).limit(151).orderBy('createdAt',"desc").get();
 
   const posts = [];
   postsDocs.forEach((doc) => {
@@ -92,6 +95,7 @@ const getCommentByIds = async (ids) => {
   const commentsDoc = await db
     .collection("comments")
     .where("id", "in", ids)
+    .orderBy('createdAt',"desc")
     .get();
   const comments = [];
   commentsDoc.forEach((doc) => {

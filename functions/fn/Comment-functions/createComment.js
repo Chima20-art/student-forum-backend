@@ -5,7 +5,7 @@ exports.createComment = functions.https.onRequest(async (request, response) => {
   response.set('Access-Control-Allow-Origin', '*');
 
   if (request.method == "POST") {
-    const { postedBy, content } = JSON.parse(request.body);
+    const { postedBy, content } = request.body
 
     if (postedBy && content) {
       try {

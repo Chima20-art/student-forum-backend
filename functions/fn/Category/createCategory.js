@@ -8,7 +8,7 @@ exports.createCategory = functions.https.onRequest(
     response.set('Access-Control-Allow-Origin', '*');
 
     if (request.method == "POST") {
-      const { name, description } = JSON.parse(request.body);
+      const { name, description } = request.body
       if (name && description) {
         try {
           const category = new Category(name, description);

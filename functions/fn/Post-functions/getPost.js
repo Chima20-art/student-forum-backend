@@ -6,7 +6,7 @@ exports.getPost = functions.https.onRequest(async (request, response) => {
 
   if (request.method == "POST") {
     try {
-      const { id } = JSON.parse(request.body);
+      const { id } = request.body
       if (id) {
         const postDoc = await db.getPostById(id);
 

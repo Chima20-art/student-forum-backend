@@ -1,12 +1,12 @@
-const functions = require("firebase-functions");
-const db = require("../../services/db");
+const functions = require('firebase-functions');
+const db = require('../../services/db');
 
 exports.getPost = functions.https.onRequest(async (request, response) => {
   response.set('Access-Control-Allow-Origin', '*');
 
-  if (request.method == "POST") {
+  if (request.method == 'POST') {
     try {
-      const { id } = request.body
+      const { id } = JSON.parse(request.body);
       if (id) {
         const postDoc = await db.getPostById(id);
 
@@ -32,16 +32,16 @@ exports.getPost = functions.https.onRequest(async (request, response) => {
 
           return response.status(200).send(post);
         } else {
-          return response.status(500).send("Post does not exist.");
+          return response.status(500).send('Post does not exist.');
         }
       } else {
-        return response.status(500).send("can't get a post by id");
+        return response.status(501).send("can't get a post by id");
       }
     } catch (error) {
       functions.logger.error("can't get a post", error);
-      return response.status(500).send(error);
+      return response.status(502).send(error);
     }
   } else {
-    return response.status(501).send("request method is not defined");
+    return response.status(503).send('request method is not defined');
   }
 });

@@ -22,9 +22,12 @@ exports.getAllPosts = functions.https.onRequest(async (request, response) => {
           const category = post.category;
           const commentIds = post.comments;
           let categoryDoc = await db.getCategory(category);
+          let postedBy = await db.getUsersByIds([post.postedBy]);
+
           const categoryData = categoryDoc.data();
           post.category = categoryData;
           post.comments = commentIds;
+          post.postedBy = postedBy?.length > 0 ? postedBy[0] : null;
 
           posts.push(post);
         }

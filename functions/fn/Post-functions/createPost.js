@@ -6,10 +6,10 @@ exports.createPost = functions.https.onRequest(async (request, response) => {
   response.set('Access-Control-Allow-Origin', '*');
 
   if (request.method == 'POST') {
-    const { postedBy, content, category } = JSON.parse(request.body);
+    const { postedBy, title, content, category } = JSON.parse(request.body);
     if (postedBy && content && category) {
       try {
-        const post = new Post(postedBy, content, category);
+        const post = new Post(postedBy, title, content, category);
         const res = await db.addPostToDb(post);
         return response.status(200).send(post);
       } catch (error) {

@@ -1,67 +1,65 @@
-const admin = require("firebase-admin");
+const admin = require('firebase-admin');
 const {
   getFirestore,
   Timestamp,
   FieldValue,
-} = require("firebase-admin/firestore");
+} = require('firebase-admin/firestore');
 
-const serviceAccount = require("../firebase-account-key.json");
-const { Category } = require("../model/category");
+const serviceAccount = require('../firebase-account-key.json');
+const { Category } = require('../model/category');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL:
-    "https://studentforum-f11ce-default-rtdb.europe-west1.firebasedatabase.app/",
+    'https://studentforum-f11ce-default-rtdb.europe-west1.firebasedatabase.app/',
 });
 
 const db = getFirestore();
 
-
-
 const addPostToDb = async (post) => {
   return await db
-    .collection("posts")
+    .collection('posts')
     .doc(post.id)
     .set(JSON.parse(JSON.stringify(post)));
 };
 const removePost = async (id) => {
-  return await db.collection("posts").doc(id).delete();
+  return await db.collection('posts').doc(id).delete();
 };
 const getPostById = async (id) => {
-  return await db.collection("posts").doc(id).get();
+  return await db.collection('posts').doc(id).get();
 };
 
 const addCommentToDb = async (comment) => {
   return await db
-    .collection("comments")
+    .collection('comments')
     .doc(comment.id)
     .set(JSON.parse(JSON.stringify(comment)));
 };
 
 const getCommentById = async (id) => {
-  return await db.collection("comments").doc(id).get();
+  return await db.collection('comments').doc(id).get();
 };
 
 const removeComment = async (id) => {
-  return await db.collection("comments").doc(id).delete();
+  return await db.collection('comments').doc(id).delete();
 };
 
 const addCategoryToDb = async (category) => {
   return await db
-    .collection("categories")
+    .collection('categories')
     .doc(category.id)
     .set(JSON.parse(JSON.stringify(category)));
 };
 
 const removeCategory = async (id) => {
-  return await db.collection("categories").doc(id).delete();
+  return await db.collection('categories').doc(id).delete();
 };
 
 const getCategory = async (id) => {
-  return await db.collection("categories").doc(id).get();
+  return await db.collection('categories').doc(id).get();
 };
 const getAllCategories = async () => {
-  const res = await db.collection("categories").get();
+  const res = await db.collection('categories').get();
 
   const categories = [];
   res.forEach((doc) => {
@@ -71,7 +69,11 @@ const getAllCategories = async () => {
 };
 
 const getPostsCollection = async () => {
-  const postsDoc = await db.collection("posts").orderBy('createdAt',"desc").limit(151).get();
+  const postsDoc = await db
+    .collection('posts')
+    .orderBy('createdAt', 'desc')
+    .limit(151)
+    .get();
   const posts = [];
   postsDoc.forEach((post) => {
     posts.push(post.data());
@@ -80,9 +82,12 @@ const getPostsCollection = async () => {
 };
 
 const getPostsByCategory = async (a) => {
-
-  const collectionRef = await db.collection("posts");
-  const postsDocs = await collectionRef.where("category", "==", a).limit(151).orderBy('createdAt',"desc").get();
+  const collectionRef = await db.collection('posts');
+  const postsDocs = await collectionRef
+    .where('category', '==', a)
+    .limit(151)
+    .orderBy('createdAt', 'desc')
+    .get();
 
   const posts = [];
   postsDocs.forEach((doc) => {
@@ -93,9 +98,9 @@ const getPostsByCategory = async (a) => {
 
 const getCommentByIds = async (ids) => {
   const commentsDoc = await db
-    .collection("comments")
-    .where("id", "in", ids)
-    .orderBy('createdAt',"desc")
+    .collection('comments')
+    .where('id', 'in', ids)
+    .orderBy('createdAt', 'desc')
     .get();
   const comments = [];
   commentsDoc.forEach((doc) => {
@@ -104,7 +109,18 @@ const getCommentByIds = async (ids) => {
   return comments;
 };
 
+const getUsersByIds = async (ids) => {
+  const users = [];
+  const usersDoc = await db.collection('users').where('email', 'in', ids).get();
+  usersDoc.forEach((doc) => {
+    users.push(doc.data());
+  });
+
+  return users;
+};
+
 module.exports = {
+  getUsersByIds,
   getPostsByCategory,
   getPostsCollection,
   getAllCategories,

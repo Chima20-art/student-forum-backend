@@ -31,3 +31,5 @@ exports.addPostComment =
 exports.getAllPosts = require('./fn/Post-functions/getAllPosts').getAllPosts;
 exports.getPostsByCategory2 =
   require('./fn/Post-functions/getPostsByCategory').getPostsByCategory;
+
+exports.getUsersByIds = require('./fn/user/getUsers').getUsersByIds;

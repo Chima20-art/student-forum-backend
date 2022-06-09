@@ -7,7 +7,7 @@ class category {
     this.description = description;
     this.id = uid(32);
     this.createdAt = Date.now();
-    this.iconName = iconName;
+    this.iconName = iconName ?? 'AccountBalanceIcon';
   }
 }
 

@@ -119,7 +119,22 @@ const getUsersByIds = async (ids) => {
   return users;
 };
 
+const getPostsByUser = async (email) => {
+  const postsDoc = await db
+    .collection('posts')
+    .where('email', '==', email)
+    .orderBy('createdAt', 'desc')
+    .limit(151)
+    .get();
+  const posts = [];
+  postsDoc.forEach((post) => {
+    posts.push(post.data());
+  });
+  return posts;
+};
+
 module.exports = {
+  getPostsByUser,
   getUsersByIds,
   getPostsByCategory,
   getPostsCollection,

@@ -9,6 +9,9 @@ exports.addPostComment = functions.https.onRequest(
     if (request.method == 'POST') {
       try {
         const { postedBy, content, postId } = JSON.parse(request.body);
+        console.log('postedBy ', postedBy);
+        console.log('content ', content);
+        console.log('postId ', postId);
         if (postedBy && content && postId) {
           const postDoc = await db.getPostById(postId);
           if (postDoc.exists) {

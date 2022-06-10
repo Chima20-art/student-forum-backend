@@ -33,3 +33,5 @@ exports.getPostsByCategory2 =
   require('./fn/Post-functions/getPostsByCategory').getPostsByCategory;
 
 exports.getUsersByIds = require('./fn/user/getUsers').getUsersByIds;
+exports.getPostsByUser =
+  require('./fn/Post-functions/getPostsByUser').getPostsByUser;

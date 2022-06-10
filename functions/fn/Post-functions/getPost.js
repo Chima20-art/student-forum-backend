@@ -15,20 +15,28 @@ exports.getPost = functions.https.onRequest(async (request, response) => {
           const comments = [];
           const categoryId = post.category;
           let category = await db.getCategory(categoryId);
+          let postedBy = await db.getUsersByIds([post.postedBy]);
+
           const categoryData = category.data();
           const commentsPromises = [];
           for (let i = 0; i < post.comments.length; i++) {
             commentsPromises.push(db.getCommentById(post.comments[i]));
           }
           let commentsRes = await Promise.all(commentsPromises);
+          let commentUsersIds = [];
           commentsRes.forEach((comment) => {
             if (comment.exists) {
-              comments.push(comment.data());
+              const commentData = comment.data();
+              commentUsersIds.push(commentData.postedBy);
+              comments.push(commentData);
             }
             return null;
           });
+
+          post.commentUsers = await db.getUsersByIds(commentUsersIds);
           post.comments = comments;
           post.category = categoryData;
+          post.postedBy = postedBy?.length > 0 ? postedBy[0] : null;
 
           return response.status(200).send(post);
         } else {

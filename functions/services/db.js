@@ -97,6 +97,7 @@ const getPostsByCategory = async (a) => {
 };
 
 const getCommentByIds = async (ids) => {
+  if (!Array.isArray(ids) || ids?.length == 0) return [];
   const commentsDoc = await db
     .collection('comments')
     .where('id', 'in', ids)
@@ -110,6 +111,7 @@ const getCommentByIds = async (ids) => {
 };
 
 const getUsersByIds = async (ids) => {
+  if (!Array.isArray(ids) || ids?.length == 0) return [];
   const users = [];
   const usersDoc = await db.collection('users').where('email', 'in', ids).get();
   usersDoc.forEach((doc) => {

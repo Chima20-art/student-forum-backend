@@ -14,7 +14,9 @@ exports.getPostsByUser = functions.https.onRequest(
         if (!email) {
           return response.status(500).send('email does not exsit');
         }
-        let postsRaw = await db.getPostById(email);
+        console.log('email is ', email);
+        let postsRaw = await db.getPostsByUser(email);
+        console.log('postsRaw got ', postsRaw);
         if (postsRaw.length > 0) {
           postsRaw = postsRaw.slice(
             cursor * NUMBER_OF_POSTS,

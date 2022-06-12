@@ -124,7 +124,7 @@ const getUsersByIds = async (ids) => {
 const getPostsByUser = async (email) => {
   const postsDoc = await db
     .collection('posts')
-    .where('email', '==', email)
+    .where('postedBy', '==', email)
     .orderBy('createdAt', 'desc')
     .limit(151)
     .get();
